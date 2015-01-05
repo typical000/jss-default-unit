@@ -2,7 +2,7 @@
 
 This plugin adds `px` to values for [jss](https://github.com/jsstyles/jss).
 
-Take a look at [examples](http://jsstyles.github.io/jss-extend/examples/index.html) directory.
+Take a look at [examples](http://jsstyles.github.io/jss-px/examples/index.html) directory.
 
 
 ```javascript
