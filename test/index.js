@@ -12,14 +12,14 @@ QUnit.module('Px plugin', {
 test('unitless values', function () {
     var ss = new jss.StyleSheet({
         a: {zoom: 1}
-    })
+    }, {named: false})
     equal(ss.toString(), 'a {\n  zoom: 1;\n}', 'is number')
 })
 
 test('values with units', function () {
     var ss = new jss.StyleSheet({
         a: {width: 10}
-    })
+    }, {named: false})
     equal(ss.toString(), 'a {\n  width: 10px;\n}', 'px added')
 })
 

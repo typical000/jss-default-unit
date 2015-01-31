@@ -1,4 +1,4 @@
 // Application
 jss.use(jssPx)
-jss.createStyleSheet(window.styles).attach()
+jss.createStyleSheet(window.styles, {named: false}).attach()
 
