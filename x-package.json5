@@ -1,7 +1,7 @@
 {
     name: 'jss-px',
     description: 'Adds default px unit to numeric values where needed.',
-    version: '0.1.2',
+    version: '0.1.3',
     author: {
         name: 'Oleg Slobodskoi',
         email: 'oleg008@gmail.com'
@@ -22,7 +22,7 @@
     overlay: {
         bower: {
             dependencies: {
-                jsstyles: '^1.0.0'
+                jsstyles: '^2.1.0'
             }
         },
         npm: {
@@ -30,10 +30,10 @@
                 browserify: '6.0.3',
                 qunitjs: '1.15.0',
                 xpkg: '0.2.0',
-                jss: '^1.0.0'
+                jss: '^2.1.0'
             },
             peerDependencies: {
-                jss: '^1.0.0'
+                jss: '^2.1.0'
             }
         }
     }

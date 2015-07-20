@@ -6,6 +6,7 @@
 var cssNumber = {
     'column-count': true,
     'fill-opacity': true,
+    'flex': true,
     'flex-grow': true,
     'flex-shrink': true,
     'font-weight': true,
