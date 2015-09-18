@@ -1,45 +1,64 @@
-## Default value unit plugin for JSS
+![JSS logo](http://avatars1.githubusercontent.com/u/9503099?v=3&s=60)
 
-This plugin adds `px` to values for [jss](https://github.com/jsstyles/jss).
+## JSS plugin that adds default px unit to numeric values where needed
 
-Take a look at [examples](http://jsstyles.github.io/jss-px/examples/index.html) directory.
+This plugin lets you omit the `px` unit from values of style properties.
 
+[Demo](http://jsstyles.github.io/jss-examples/index.html#plugin-jss-px) -
+[JSS](https://github.com/jsstyles/jss)
+
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/jsstyles/jss?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+
+## Usage example
 
 ```javascript
-exports.styles = {
-    button: {
-        'font-size': 20,
-        'z-index': 1,
-        'line-height': 1.2
-    }
-}
+import jss from 'jss'
+import px from 'jss-px'
+
+jss.use(px)
+
+const styleSheet = jss.createStyleSheet({
+  container: {
+    'font-size': 20,
+    'z-index': 1,
+    'line-height': 1.2
+  }
+})
+```
+
+```javascript
+console.log(styleSheet.toString())
 ```
 ```css
-button {
-    font-size: 20px;
-    z-index: 1;
-    line-height: 1.2
+.jss-0-0 {
+  font-size: 20px;
+  z-index: 1;
+  line-height: 1.2;
 }
 ```
 
-## Register plugin
-
 ```javascript
-var jss = require('jss')
-var px = require('jss-px')
-jss.use(px)
+console.log(styleSheet.classes)
 ```
+```javascript
+{ container: "jss-0-0" }
+```
+
 
 ## Run tests
 
 ### Locally
+
 ```bash
 npm i
 open test/local.html
 ```
+
 ### From github
 
 [Tests](https://jsstyles.github.com/jss-px/test)
+
 
 ## License
 
