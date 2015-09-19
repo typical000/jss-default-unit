@@ -20,6 +20,6 @@
   "license": "MIT",
   "main": "dist/jss-px.js",
   "dependencies": {
-    "jsstyles": "^2.3.0"
+    "jsstyles": "^2.3.2"
   }
 }
