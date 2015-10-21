@@ -2,7 +2,7 @@
 
 QUnit.module('Px plugin', {
   setup: function () {
-    jss.use(jssPx)
+    jss.use(jssPx())
   },
   teardown: function () {
     jss.plugins.registry = []

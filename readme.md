@@ -16,9 +16,9 @@ This plugin lets you omit the `px` unit from values of style properties.
 import jss from 'jss'
 import px from 'jss-px'
 
-jss.use(px)
+jss.use(px())
 
-const styleSheet = jss.createStyleSheet({
+let sheet = jss.createStyleSheet({
   container: {
     'font-size': 20,
     'z-index': 1,
@@ -28,7 +28,7 @@ const styleSheet = jss.createStyleSheet({
 ```
 
 ```javascript
-console.log(styleSheet.toString())
+console.log(sheet.toString())
 ```
 ```css
 .jss-0-0 {
@@ -39,12 +39,11 @@ console.log(styleSheet.toString())
 ```
 
 ```javascript
-console.log(styleSheet.classes)
+console.log(sheet.classes)
 ```
 ```javascript
 { container: "jss-0-0" }
 ```
-
 
 ## Run tests
 
@@ -52,7 +51,6 @@ console.log(styleSheet.classes)
 npm i
 npm run test
 ```
-
 
 ## License
 

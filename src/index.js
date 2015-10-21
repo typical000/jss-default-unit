@@ -27,14 +27,14 @@ const cssNumber = {
  * @param {Rule} rule
  * @api public
  */
-export default function jssPx(rule) {
-  const style = rule.style
-
-  if (!style) return
-
-  for (let prop in style) {
-    if (!cssNumber[prop] && typeof style[prop] == 'number') {
-      style[prop] += 'px'
+export default function jssPx() {
+  return rule => {
+    let {style} = rule
+    if (!style) return
+    for (let prop in style) {
+      if (!cssNumber[prop] && typeof style[prop] == 'number') {
+        style[prop] += 'px'
+      }
     }
   }
 }
