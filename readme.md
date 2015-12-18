@@ -47,7 +47,7 @@ console.log(sheet.classes)
 
 ## Issues
 
-File a bug against [jsstyles/jss prefixed with \[jss-px\]](https://github.com/jsstyles/jss-px/issues/new?title=[jss-px]%20).
+File a bug against [jsstyles/jss prefixed with \[jss-px\]](https://github.com/jsstyles/jss/issues/new?title=[jss-px]%20).
 
 ## Run tests
 
