@@ -1,5 +1,4 @@
-// Don't automatically add 'px' to these possibly-unitless properties.
-// Borrowed from jquery.
+// Don't automatically add unit to these possibly-unitless properties.
 const cssNumber = {
   'animation-iteration-count': true,
   'box-ordinal-group': true,
@@ -15,7 +14,7 @@ const cssNumber = {
   'order': true,
   'orphans': true,
   'stop-opacity': true,
-  'tab-size': 1,
+  'tab-size': true,
   'widows': true,
   'z-index': true,
   'zoom': true
