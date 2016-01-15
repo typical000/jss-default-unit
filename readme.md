@@ -2,7 +2,7 @@
 
 ## JSS plugin that adds default custom unit to numeric values where needed
 
-This plugin lets you omit the unit from values of style properties.
+This plugin lets you omit the unit from values of style properties. Default unit is "px", but you can pass anything else instead.
 
 [Demo](http://jsstyles.github.io/jss-examples/index.html#plugin-jss-default-unit) -
 [JSS](https://github.com/jsstyles/jss)
@@ -16,7 +16,8 @@ This plugin lets you omit the unit from values of style properties.
 import jss from 'jss'
 import defaultUnit from 'jss-default-unit'
 
-jss.use(defaultUnit('px'))
+// px is default, lets make default to em
+jss.use(defaultUnit(unit: 'em'))
 
 let sheet = jss.createStyleSheet({
   container: {
@@ -32,7 +33,7 @@ console.log(sheet.toString())
 ```
 ```css
 .jss-0-0 {
-  font-size: 20px;
+  font-size: 20em;
   z-index: 1;
   line-height: 1.2;
 }
