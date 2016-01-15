@@ -2,7 +2,7 @@
 
 QUnit.module('defaultUnit plugin', {
   setup: function () {
-    jss.use(defaultUnit({unit: 'px'}))
+    jss.use(jssDefaultUnit({unit: 'px'}))
   },
   teardown: function () {
     jss.plugins.registry = []
