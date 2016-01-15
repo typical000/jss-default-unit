@@ -1,3 +1,7 @@
+## 2.0.0 / 2016-01-14
+
+- now unit agnostic, user can provide a unit.
+
 ## 1.0.0 / 2015-10-19
 
 - support jss 3.0

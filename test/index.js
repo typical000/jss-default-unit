@@ -1,8 +1,8 @@
 'use strict'
 
-QUnit.module('Px plugin', {
+QUnit.module('defaultUnit plugin', {
   setup: function () {
-    jss.use(jssPx())
+    jss.use(defaultUnit({unit: 'px'}))
   },
   teardown: function () {
     jss.plugins.registry = []

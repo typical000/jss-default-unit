@@ -1,10 +1,10 @@
 ![JSS logo](https://avatars1.githubusercontent.com/u/9503099?v=3&s=60)
 
-## JSS plugin that adds default px unit to numeric values where needed
+## JSS plugin that adds default custom unit to numeric values where needed
 
-This plugin lets you omit the `px` unit from values of style properties.
+This plugin lets you omit the unit from values of style properties.
 
-[Demo](http://jsstyles.github.io/jss-examples/index.html#plugin-jss-px) -
+[Demo](http://jsstyles.github.io/jss-examples/index.html#plugin-jss-default-unit) -
 [JSS](https://github.com/jsstyles/jss)
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/jsstyles/jss?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -14,9 +14,9 @@ This plugin lets you omit the `px` unit from values of style properties.
 
 ```javascript
 import jss from 'jss'
-import px from 'jss-px'
+import defaultUnit from 'jss-default-unit'
 
-jss.use(px())
+jss.use(defaultUnit('px'))
 
 let sheet = jss.createStyleSheet({
   container: {
@@ -47,7 +47,7 @@ console.log(sheet.classes)
 
 ## Issues
 
-File a bug against [jsstyles/jss prefixed with \[jss-px\]](https://github.com/jsstyles/jss/issues/new?title=[jss-px]%20).
+File a bug against [jsstyles/jss prefixed with \[jss-default-unit\]](https://github.com/jsstyles/jss/issues/new?title=[jss-px]%20).
 
 ## Run tests
 
