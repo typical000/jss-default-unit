@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   output: {
-    library: 'jssPx',
+    library: 'defaultUnit',
     libraryTarget: 'umd'
   },
   plugins: plugins,

@@ -22,18 +22,18 @@ const cssNumber = {
 }
 
 /**
- * Add px to numeric values.
+ * Add unit to numeric values.
  *
  * @param {Rule} rule
  * @api public
  */
-export default function jssPx() {
+export default function defaultUnit(options = {unit: 'px'}) {
   return rule => {
     let {style} = rule
     if (!style) return
     for (let prop in style) {
       if (!cssNumber[prop] && typeof style[prop] == 'number') {
-        style[prop] += 'px'
+        style[prop] += options.unit
       }
     }
   }

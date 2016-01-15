@@ -1,19 +1,21 @@
 {
-  "name": "jss-px",
-  "description": "JSS plugin that adds default px unit to numeric values where needed",
-  "version": "1.0.0",
+  "name": "jss-default-unit",
+  "description": "JSS plugin that adds default custom unit to numeric values where needed",
+  "version": "2.0.0",
   "author": {
     "name": "Oleg Slobodskoi",
     "email": "oleg008@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:jsstyles/jss-px.git"
+    "url": "git@github.com:jsstyles/jss-default-unit.git"
   },
   "keywords": [
     "jss",
     "plugin",
-    "px"
+    "px",
+    "unit",
+    "default-unit"
   ],
   "engines": {},
   "scripts": {
@@ -22,8 +24,8 @@
     "build": "npm run clean && npm run build:lib && npm run build:max && npm run build:min",
     "clean": "rimraf ./lib/*",
     "build:lib": "babel src --out-dir lib",
-    "build:max": "NODE_ENV=development webpack src/index.js dist/jss-px.js",
-    "build:min": "NODE_ENV=production webpack src/index.js dist/jss-px.min.js",
+    "build:max": "NODE_ENV=development webpack src/index.js dist/jss-default-unit.js",
+    "build:min": "NODE_ENV=production webpack src/index.js dist/jss-default-unit.min.js",
     "lint": "eslint ./src",
     "prepublish": "npm run all && git push --tags"
   },
