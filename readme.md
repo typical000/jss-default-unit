@@ -17,7 +17,7 @@ import jss from 'jss'
 import defaultUnit from 'jss-default-unit'
 
 // px is default, lets make default to em
-jss.use(defaultUnit(unit: 'em'))
+jss.use(defaultUnit({unit: 'em'}))
 
 let sheet = jss.createStyleSheet({
   container: {
