@@ -4,7 +4,7 @@
 
 This plugin lets you omit the unit from values of style properties. Default unit is "px", but you can pass anything else instead.
 
-[Demo](http://jsstyles.github.io/jss-examples/index.html#plugin-jss-default-unit) -
+[Demo](http://jsstyles.github.io/examples/index.html#plugin-jss-default-unit) -
 [JSS](https://github.com/jsstyles/jss)
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/jsstyles/jss?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
