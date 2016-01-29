@@ -1,3 +1,7 @@
+## 2.1.0 / 2016-01-29
+
+- don't add default units to zero values (@wldcordeiro)
+
 ## 2.0.0 / 2016-01-14
 
 - now unit agnostic, user can provide a unit.
