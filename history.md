@@ -1,3 +1,7 @@
+## 2.1.1 / 2016-03-24
+
+- update babel
+
 ## 2.1.0 / 2016-01-29
 
 - don't add default units to zero values (@wldcordeiro)
