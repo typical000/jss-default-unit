@@ -1,3 +1,7 @@
+## 2.1.2 / 2016-04-21
+
+- only handle regular rules
+
 ## 2.1.1 / 2016-03-24
 
 - update babel
