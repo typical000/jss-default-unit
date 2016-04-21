@@ -28,8 +28,8 @@ const cssNumber = {
  */
 export default function defaultUnit(options = {unit: 'px'}) {
   return rule => {
-    const {style} = rule
-    if (!style) return
+    const {style, type} = rule
+    if (!style || type !== 'regular') return
     for (const prop in style) {
       if (!cssNumber[prop] && typeof style[prop] == 'number' && style[prop] !== 0) {
         style[prop] += options.unit
