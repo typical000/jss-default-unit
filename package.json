@@ -1,7 +1,7 @@
 {
   "name": "jss-default-unit",
   "description": "JSS plugin that adds default custom unit to numeric values where needed",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "author": {
     "name": "Oleg Slobodskoi",
     "email": "oleg008@gmail.com"
