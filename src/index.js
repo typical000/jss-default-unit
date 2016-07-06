@@ -3,23 +3,23 @@ import numericProps from './numericProps'
 /**
  * Recursive deep style passing function
  *
- * @param {(Object|Number|String)} value
+ * @param {Object} original style
  * @param {Object} options
  * @return {Object} resulting style
  */
-function passStyle(style, options) {
+function iterate(style, options) {
   for (const prop in style) {
     switch (style[prop].constructor) {
       case Object:
-        passStyle(style[prop], options)
+        iterate(style[prop], options)
         break
       case Array:
         for (const item in style[prop]) {
-          style[prop][item] = checkForNumber(prop, style[prop][item], options)
+          style[prop][item] = addUnit(prop, style[prop][item], options)
         }
         break
       case Number:
-        style[prop] = checkForNumber(prop, style[prop], options)
+        style[prop] = addUnit(prop, style[prop], options)
         break
       default:
         break
@@ -32,15 +32,15 @@ function passStyle(style, options) {
  * Check if default unit must be added
  *
  * @param {String} current property
- * @param {(Object|Number|String)} item value
+ * @param {(Object|Number|String)} property value
  * @param {Object} options
  * @return {String} string with units
  */
-function checkForNumber(prop, item, options) {
-  if (!numericProps[prop] && typeof item == 'number' && item !== 0) {
-    item += options.unit
+function addUnit(prop, value, options) {
+  if (!numericProps[prop] && typeof value == 'number' && value !== 0) {
+    value += options.unit
   }
-  return item
+  return value
 }
 
 /**
@@ -49,10 +49,10 @@ function checkForNumber(prop, item, options) {
  * @param {Rule} rule
  * @api public
  */
-export default function defaultUnit(options = { unit: 'px' }) {
+export default function defaultUnit(options = {unit: 'px'}) {
   return rule => {
-    const { style, type } = rule
+    const {style, type} = rule
     if (!style || type !== 'regular') return
-    passStyle(style, options)
+    iterate(style, options)
   }
 }
