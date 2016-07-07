@@ -14,9 +14,7 @@ function iterate(style, options) {
         iterate(style[prop], options)
         break
       case Array:
-        for (const item in style[prop]) {
-          style[prop][item] = addUnit(prop, style[prop][item], options)
-        }
+        style[prop] = style[prop].map(value => addUnit(prop, value, options))
         break
       case Number:
         style[prop] = addUnit(prop, style[prop], options)
