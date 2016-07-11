@@ -67,9 +67,9 @@ QUnit.test('values in objects', function (assert) {
     a: {
       property: 5,
       fallbacks: {
-        property: [5, 10]
+        property: 10
       }
     }
   }, {named: false})
-  assert.equal(ss.toString(), 'a {\n  property: 5px,10px;\n  property: 5px;\n}', 'is number')
+  assert.equal(ss.toString(), 'a {\n  property: 10px;\n  property: 5px;\n}', 'is number')
 })
