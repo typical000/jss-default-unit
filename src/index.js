@@ -5,7 +5,6 @@ import numericProps from './numericProps'
  *
  * @param {Object} original style
  * @param {Object} options
- * @return {Object} resulting style
  */
 function iterate(style, options) {
   for (const prop in style) {
@@ -25,7 +24,6 @@ function iterate(style, options) {
         break
     }
   }
-  return style
 }
 
 /**
