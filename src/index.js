@@ -3,34 +3,38 @@ import numericProps from './numericProps'
 /**
  * Recursive deep style passing function
  *
- * @param {Object} original style
+ * @param {String} current property
+ * @param {(Object|Array|Number|String)} property value
  * @param {Object} options
+ * @return {(Object|Array|Number|String)} resulting value
  */
-function iterate(style, options) {
-  for (const prop in style) {
-    switch (style[prop].constructor) {
-      case Object:
-        iterate(style[prop], options)
-        break
-      case Array:
-        for (let i = 0; i < style[prop].length; i++) {
-          style[prop][i] = addUnit(prop, style[prop][i], options)
-        }
-        break
-      case Number:
-        style[prop] = addUnit(prop, style[prop], options)
-        break
-      default:
-        break
-    }
+function iterate(prop, value, options) {
+  let convertedValue = value
+  switch (value.constructor) {
+    case Object:
+      for (const innerProp in value) {
+        value[innerProp] = iterate(innerProp, value[innerProp], options)
+      }
+      break
+    case Array:
+      for (let i = 0; i < value.length; i++) {
+        value[i] = iterate(prop, value[i], options)
+      }
+      break
+    case Number:
+      convertedValue = addUnit(prop, value, options)
+      break
+    default:
+      break
   }
+  return convertedValue
 }
 
 /**
  * Check if default unit must be added
  *
  * @param {String} current property
- * @param {(Object|Number|String)} property value
+ * @param {(Object|Array|Number|String)} property value
  * @param {Object} options
  * @return {String} string with units
  */
@@ -51,6 +55,8 @@ export default function defaultUnit(options = {unit: 'px'}) {
   return rule => {
     const {style, type} = rule
     if (!style || type !== 'regular') return
-    iterate(style, options)
+    for (const prop in style) {
+      style[prop] = iterate(prop, style[prop], options)
+    }
   }
 }

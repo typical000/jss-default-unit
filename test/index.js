@@ -25,7 +25,6 @@ QUnit.test('values with units', function (assert) {
   assert.equal(ss.toString(), 'a {\n  width: 10px;\n}', 'px added')
 })
 
-
 QUnit.test('leave non-regular rules unchanged', function (assert) {
   var ss = jss.createStyleSheet({
     '@font-face': {
@@ -55,11 +54,25 @@ QUnit.test('leave non-regular rules unchanged', function (assert) {
   assert.equal(ss.toString(), '@keyframes id {\n  from {\n    top: 0;\n  }\n  30% {\n    top: 30px;\n  }\n  60%, 70% {\n    top: 80px;\n  }\n}')
 })
 
-QUnit.test('values in arrays', function (assert) {
+QUnit.test('comma-separated values', function (assert) {
   var ss = jss.createStyleSheet({
     a: {property: [10, 15]}
   }, {named: false})
-  assert.equal(ss.toString(), 'a {\n  property: 10px,15px;\n}', 'is number')
+  assert.equal(ss.toString(), 'a {\n  property: 10px, 15px;\n}', 'is number')
+})
+
+QUnit.test('space-separated values', function (assert) {
+  var ss = jss.createStyleSheet({
+    a: {property: [[10, 15]]}
+  }, {named: false})
+  assert.equal(ss.toString(), 'a {\n  property: 10px 15px;\n}', 'is number')
+})
+
+QUnit.test('space-separated values (advanced)', function (assert) {
+  var ss = jss.createStyleSheet({
+    a: {border: [[1, 'solid', 'red'], [1, 'solid', 'blue']]}
+  }, {named: false})
+  assert.equal(ss.toString(), 'a {\n  border: 1px solid red, 1px solid blue;\n}', 'is number')
 })
 
 QUnit.test('values in objects', function (assert) {
@@ -67,9 +80,9 @@ QUnit.test('values in objects', function (assert) {
     a: {
       property: 5,
       fallbacks: {
-        property: 10
+        property: [[10, 5]]
       }
     }
   }, {named: false})
-  assert.equal(ss.toString(), 'a {\n  property: 10px;\n  property: 5px;\n}', 'is number')
+  assert.equal(ss.toString(), 'a {\n  property: 10px 5px;\n  property: 5px;\n}', 'is number')
 })
