@@ -1,3 +1,8 @@
+## 3.0.0 / 2016-07-13
+
+- update to jss 5
+- support arrays and objects
+
 ## 2.2.0 / 2016-04-24
 
 - add more numeric props
