@@ -1,37 +1,38 @@
 'use strict'
 
+var jss = jss.create();
+
 QUnit.module('defaultUnit plugin', {
-  setup: function () {
+  beforeEach: function () {
     jss.use(jssDefaultUnit.default({unit: 'px'}))
   },
-  teardown: function () {
+  afterEach: function () {
     jss.plugins.registry = []
   }
 })
 
-test('unitless values', function () {
+QUnit.test('unitless values', function (assert) {
   var ss = jss.createStyleSheet({
     a: {zoom: 1}
   }, {named: false})
-  equal(ss.toString(), 'a {\n  zoom: 1;\n}', 'is number')
+  assert.equal(ss.toString(), 'a {\n  zoom: 1;\n}', 'is number')
 })
 
-test('values with units', function () {
+QUnit.test('values with units', function (assert) {
   var ss = jss.createStyleSheet({
     a: {width: 10}
   }, {named: false})
-  equal(ss.toString(), 'a {\n  width: 10px;\n}', 'px added')
+  assert.equal(ss.toString(), 'a {\n  width: 10px;\n}', 'px added')
 })
 
-
-test('leave non-regular rules unchanged', function () {
+QUnit.test('leave non-regular rules unchanged', function (assert) {
   var ss = jss.createStyleSheet({
     '@font-face': {
       'font-family': 'MyHelvetica',
       src: 'local("Helvetica")'
     }
   })
-  equal(ss.toString(), '@font-face {\n  font-family: MyHelvetica;\n  src: local("Helvetica");\n}')
+  assert.equal(ss.toString(), '@font-face {\n  font-family: MyHelvetica;\n  src: local("Helvetica");\n}')
 
   ss = jss.createStyleSheet({
     '@media print': {
@@ -40,8 +41,8 @@ test('leave non-regular rules unchanged', function () {
         'border': 3
       }
     }
-  })
-  equal(ss.toString(), '@media print {\n  .button--jss-0-4 {\n    border-left: 1px;\n    border: 3px;\n  }\n}')
+  }, {named: false})
+  assert.equal(ss.toString(), '@media print {\n  button {\n    border-left: 1px;\n    border: 3px;\n  }\n}')
 
   ss = jss.createStyleSheet({
     '@keyframes id': {
@@ -50,5 +51,38 @@ test('leave non-regular rules unchanged', function () {
       '60%, 70%': {top: 80}
     }
   })
-  equal(ss.toString(), '@keyframes id {\n  from {\n    top: 0;\n  }\n  30% {\n    top: 30px;\n  }\n  60%, 70% {\n    top: 80px;\n  }\n}')
+  assert.equal(ss.toString(), '@keyframes id {\n  from {\n    top: 0;\n  }\n  30% {\n    top: 30px;\n  }\n  60%, 70% {\n    top: 80px;\n  }\n}')
+})
+
+QUnit.test('comma-separated values', function (assert) {
+  var ss = jss.createStyleSheet({
+    a: {property: [10, 15]}
+  }, {named: false})
+  assert.equal(ss.toString(), 'a {\n  property: 10px, 15px;\n}', 'is number')
+})
+
+QUnit.test('space-separated values', function (assert) {
+  var ss = jss.createStyleSheet({
+    a: {property: [[10, 15]]}
+  }, {named: false})
+  assert.equal(ss.toString(), 'a {\n  property: 10px 15px;\n}', 'is number')
+})
+
+QUnit.test('space-separated values (advanced)', function (assert) {
+  var ss = jss.createStyleSheet({
+    a: {border: [[1, 'solid', 'red'], [1, 'solid', 'blue']]}
+  }, {named: false})
+  assert.equal(ss.toString(), 'a {\n  border: 1px solid red, 1px solid blue;\n}', 'is number')
+})
+
+QUnit.test('values in objects', function (assert) {
+  var ss = jss.createStyleSheet({
+    a: {
+      property: 5,
+      fallbacks: {
+        property: [[10, 5]]
+      }
+    }
+  }, {named: false})
+  assert.equal(ss.toString(), 'a {\n  property: 10px 5px;\n  property: 5px;\n}', 'is number')
 })
