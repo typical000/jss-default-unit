@@ -1,5 +1,6 @@
-// Don't automatically add unit to these possibly-unitless properties.
+// Don't automatically add unit to these properties.
 export default {
+  // Numeric values.
   'animation-iteration-count': true,
   'border-image-outset': true,
   'border-image-slice': true,
@@ -27,7 +28,7 @@ export default {
   'z-index': true,
   zoom: true,
 
-  // SVG-related properties
+  // SVG properties
   'fill-opacity': true,
   'flood-opacity': true,
   'stop-opacity': true,
@@ -35,5 +36,8 @@ export default {
   'stroke-dashoffset': true,
   'stroke-miterlimit': true,
   'stroke-opacity': true,
-  'stroke-width': true
+  'stroke-width': true,
+
+  // Non-sizes
+  'animation-duration': true
 }

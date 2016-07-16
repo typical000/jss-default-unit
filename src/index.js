@@ -1,4 +1,4 @@
-import numericProps from './numericProps'
+import ignoreProps from './ignoreProps'
 
 /**
  * Recursive deep style passing function
@@ -39,7 +39,7 @@ function iterate(prop, value, options) {
  * @return {String} string with units
  */
 function addUnit(prop, value, options) {
-  if (!numericProps[prop] && typeof value == 'number' && value !== 0) {
+  if (!ignoreProps[prop] && typeof value == 'number' && value !== 0) {
     value += options.unit
   }
   return value

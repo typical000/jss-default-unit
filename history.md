@@ -1,3 +1,7 @@
+## 3.0.1 / 2016-07-16
+
+- add animation-duration to ignore list #271
+
 ## 3.0.0 / 2016-07-13
 
 - update to jss 5
