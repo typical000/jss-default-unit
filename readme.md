@@ -1,8 +1,8 @@
 ![JSS logo](https://avatars1.githubusercontent.com/u/9503099?v=3&s=60)
 
-## JSS plugin that adds default custom unit to numeric values where needed
+## JSS plugin that adds units to numeric values
 
-This plugin lets you omit the unit from values of style properties. Default unit is "px", but you can pass anything else instead.
+Provide plain numeric values in your JSS style definitions, and the plugin will insert the apposite units. Defaults to `px` for sizes, `ms` for durations, and `%` for transform origins, and these can be customized easily (see Usage Example).
 
 [Demo](http://jsstyles.github.io/examples/index.html#plugin-jss-default-unit) -
 [JSS](https://github.com/jsstyles/jss)
@@ -16,34 +16,38 @@ This plugin lets you omit the unit from values of style properties. Default unit
 import jss from 'jss'
 import defaultUnit from 'jss-default-unit'
 
-// px is default, lets make default to em
-jss.use(defaultUnit({unit: 'em'}))
+// Optionally customize default units.
+const options = {
+  'line-height': 'rem',
+  'font-size': 'rem'
+}
 
-let sheet = jss.createStyleSheet({
+jss.use(defaultUnit(options))
+
+// Define styles.
+const styles = {
   container: {
-    'font-size': 20,
-    'z-index': 1,
-    'line-height': 1.2
+    'line-height': 3,
+    'font-size': 1.7,
+    'height': 200,
+    'z-index': 1
   }
-})
-```
+}
 
-```javascript
+let sheet = jss.createStyleSheet(styles)
+
 console.log(sheet.toString())
 ```
-```css
-.jss-0-0 {
-  font-size: 20em;
-  z-index: 1;
-  line-height: 1.2;
-}
-```
 
-```javascript
-console.log(sheet.classes)
-```
-```javascript
-{ container: "jss-0-0" }
+Generates the following stylesheet:
+
+```css
+.container-0-0 {
+  line-height: 3rem;
+  font-size: 1.7rem;
+  height: 200px;
+  z-index: 1;
+}
 ```
 
 ## Issues
