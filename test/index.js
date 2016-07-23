@@ -36,7 +36,7 @@ QUnit.test('values with % units', function (assert) {
   var ss = jss.createStyleSheet({
     a: {'transform-origin-x': 50}
   }, {named: false})
-  assert.equal(ss.toString(), 'a {\n  transform-origin-x: 50%;\n}', 'ms added')
+  assert.equal(ss.toString(), 'a {\n  transform-origin-x: 50%;\n}', '% added')
 })
 
 QUnit.test('leave non-regular rules unchanged', function (assert) {
@@ -72,21 +72,21 @@ QUnit.test('comma-separated values', function (assert) {
   var ss = jss.createStyleSheet({
     a: {'background-size': [10, 15]}
   }, {named: false})
-  assert.equal(ss.toString(), 'a {\n  background-size: 10px, 15px;\n}', 'is number')
+  assert.equal(ss.toString(), 'a {\n  background-size: 10px, 15px;\n}', 'has px units')
 })
 
 QUnit.test('space-separated values', function (assert) {
   var ss = jss.createStyleSheet({
     a: {'background-size': [[10, 15]]}
   }, {named: false})
-  assert.equal(ss.toString(), 'a {\n  background-size: 10px 15px;\n}', 'is number')
+  assert.equal(ss.toString(), 'a {\n  background-size: 10px 15px;\n}', 'has px units')
 })
 
 QUnit.test('space-separated values (advanced)', function (assert) {
   var ss = jss.createStyleSheet({
     a: {border: [[1, 'solid', 'red'], [1, 'solid', 'blue']]}
   }, {named: false})
-  assert.equal(ss.toString(), 'a {\n  border: 1px solid red, 1px solid blue;\n}', 'is number')
+  assert.equal(ss.toString(), 'a {\n  border: 1px solid red, 1px solid blue;\n}', 'has px units')
 })
 
 QUnit.test('values in objects', function (assert) {
@@ -98,12 +98,12 @@ QUnit.test('values in objects', function (assert) {
       }
     }
   }, {named: false})
-  assert.equal(ss.toString(), 'a {\n  background-size: 10px 5px;\n  width: 5px;\n}', 'is number')
+  assert.equal(ss.toString(), 'a {\n  background-size: 10px 5px;\n  width: 5px;\n}', 'has px units')
 })
 
 QUnit.test('customized units via options object', function (assert) {
   var ss = jss.createStyleSheet({
     a: {'min-width': 20}
   }, {named: false})
-  assert.equal(ss.toString(), 'a {\n  min-width: 20pc;\n}', 'is number')
+  assert.equal(ss.toString(), 'a {\n  min-width: 20pc;\n}', 'has pica unit')
 })
