@@ -1,4 +1,4 @@
-import ignoreProps from './ignoreProps'
+import defaultUnits from './defaultUnits'
 
 /**
  * Recursive deep style passing function
@@ -39,8 +39,8 @@ function iterate(prop, value, options) {
  * @return {String} string with units
  */
 function addUnit(prop, value, options) {
-  if (!ignoreProps[prop] && typeof value == 'number' && value !== 0) {
-    value += options.unit
+  if (typeof value == 'number' && value !== 0) {
+    value += options[prop] || defaultUnits[prop] || ''
   }
   return value
 }
@@ -51,7 +51,7 @@ function addUnit(prop, value, options) {
  * @param {Rule} rule
  * @api public
  */
-export default function defaultUnit(options = {unit: 'px'}) {
+export default function defaultUnit(options = {}) {
   return rule => {
     const {style, type} = rule
     if (!style || type !== 'regular') return

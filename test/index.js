@@ -4,7 +4,7 @@ var jss = jss.create();
 
 QUnit.module('defaultUnit plugin', {
   beforeEach: function () {
-    jss.use(jssDefaultUnit.default({unit: 'px'}))
+    jss.use(jssDefaultUnit.default({'min-width': 'pc'}))
   },
   afterEach: function () {
     jss.plugins.registry = []
@@ -18,11 +18,25 @@ QUnit.test('unitless values', function (assert) {
   assert.equal(ss.toString(), 'a {\n  zoom: 1;\n}', 'is number')
 })
 
-QUnit.test('values with units', function (assert) {
+QUnit.test('values with px units', function (assert) {
   var ss = jss.createStyleSheet({
     a: {width: 10}
   }, {named: false})
   assert.equal(ss.toString(), 'a {\n  width: 10px;\n}', 'px added')
+})
+
+QUnit.test('values with ms units', function (assert) {
+  var ss = jss.createStyleSheet({
+    a: {'animation-duration': 200}
+  }, {named: false})
+  assert.equal(ss.toString(), 'a {\n  animation-duration: 200ms;\n}', 'ms added')
+})
+
+QUnit.test('values with % units', function (assert) {
+  var ss = jss.createStyleSheet({
+    a: {'transform-origin-x': 50}
+  }, {named: false})
+  assert.equal(ss.toString(), 'a {\n  transform-origin-x: 50%;\n}', '% added')
 })
 
 QUnit.test('leave non-regular rules unchanged', function (assert) {
@@ -56,33 +70,40 @@ QUnit.test('leave non-regular rules unchanged', function (assert) {
 
 QUnit.test('comma-separated values', function (assert) {
   var ss = jss.createStyleSheet({
-    a: {property: [10, 15]}
+    a: {'background-size': [10, 15]}
   }, {named: false})
-  assert.equal(ss.toString(), 'a {\n  property: 10px, 15px;\n}', 'is number')
+  assert.equal(ss.toString(), 'a {\n  background-size: 10px, 15px;\n}', 'has px units')
 })
 
 QUnit.test('space-separated values', function (assert) {
   var ss = jss.createStyleSheet({
-    a: {property: [[10, 15]]}
+    a: {'background-size': [[10, 15]]}
   }, {named: false})
-  assert.equal(ss.toString(), 'a {\n  property: 10px 15px;\n}', 'is number')
+  assert.equal(ss.toString(), 'a {\n  background-size: 10px 15px;\n}', 'has px units')
 })
 
 QUnit.test('space-separated values (advanced)', function (assert) {
   var ss = jss.createStyleSheet({
     a: {border: [[1, 'solid', 'red'], [1, 'solid', 'blue']]}
   }, {named: false})
-  assert.equal(ss.toString(), 'a {\n  border: 1px solid red, 1px solid blue;\n}', 'is number')
+  assert.equal(ss.toString(), 'a {\n  border: 1px solid red, 1px solid blue;\n}', 'has px units')
 })
 
 QUnit.test('values in objects', function (assert) {
   var ss = jss.createStyleSheet({
     a: {
-      property: 5,
+      width: 5,
       fallbacks: {
-        property: [[10, 5]]
+        'background-size': [[10, 5]]
       }
     }
   }, {named: false})
-  assert.equal(ss.toString(), 'a {\n  property: 10px 5px;\n  property: 5px;\n}', 'is number')
+  assert.equal(ss.toString(), 'a {\n  background-size: 10px 5px;\n  width: 5px;\n}', 'has px units')
+})
+
+QUnit.test('customized units via options object', function (assert) {
+  var ss = jss.createStyleSheet({
+    a: {'min-width': 20}
+  }, {named: false})
+  assert.equal(ss.toString(), 'a {\n  min-width: 20pc;\n}', 'has pica unit')
 })
