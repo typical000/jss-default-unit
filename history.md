@@ -1,3 +1,9 @@
+## 4.0.0 / 2016-07-26
+
+- Now all values can be expressed without a unit #272
+- Removed option "unit", default units need to be set individually for different props.
+- Properties containing 'origin' (except for mask-origin) now get % as a default unit.
+
 ## 3.0.1 / 2016-07-16
 
 - add animation-duration to ignore list #271
