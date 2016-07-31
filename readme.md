@@ -4,11 +4,10 @@
 
 Provide plain numeric values in your JSS style definitions, and the plugin will insert the apposite units. Defaults to `px` for sizes, `ms` for durations, and `%` for transform origins, and these can be customized easily (see Usage Example).
 
-[Demo](http://jsstyles.github.io/examples/index.html#plugin-jss-default-unit) -
-[JSS](https://github.com/jsstyles/jss)
+[Demo](http://cssinjs.github.io/examples/index.html#plugin-jss-default-unit) -
+[JSS](https://github.com/cssinjs/jss)
 
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/jsstyles/jss?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/cssinjs/lobby)
 
 ## Usage example
 
@@ -52,7 +51,7 @@ Generates the following stylesheet:
 
 ## Issues
 
-File a bug against [jsstyles/jss prefixed with \[jss-default-unit\]](https://github.com/jsstyles/jss/issues/new?title=[jss-default-unit]%20).
+File a bug against [cssinjs/jss prefixed with \[jss-default-unit\]](https://github.com/cssinjs/jss/issues/new?title=[jss-default-unit]%20).
 
 ## Run tests
 
