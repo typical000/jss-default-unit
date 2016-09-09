@@ -9,6 +9,8 @@ import defaultUnits from './defaultUnits'
  * @return {(Object|Array|Number|String)} resulting value
  */
 function iterate(prop, value, options) {
+  if (!value) return value
+
   let convertedValue = value
   switch (value.constructor) {
     case Object:
@@ -27,6 +29,7 @@ function iterate(prop, value, options) {
     default:
       break
   }
+
   return convertedValue
 }
 

@@ -1,3 +1,7 @@
+## 4.0.1 / 2016-09-09
+
+- ignore falsy values #307
+
 ## 4.0.0 / 2016-07-26
 
 - Now all values can be expressed without a unit #272

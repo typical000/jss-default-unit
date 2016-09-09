@@ -107,3 +107,10 @@ QUnit.test('customized units via options object', function (assert) {
   }, {named: false})
   assert.equal(ss.toString(), 'a {\n  min-width: 20pc;\n}', 'has pica unit')
 })
+
+QUnit.test('ignore falsy values', function (assert) {
+  var ss = jss.createStyleSheet({
+    a: {padding: 10, margin: null}
+  }, {named: false})
+  assert.equal(ss.toString(), 'a {\n  padding: 10px;\n}', 'has padding, no margin')
+})
