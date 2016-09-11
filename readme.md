@@ -4,6 +4,10 @@
 
 Provide plain numeric values in your JSS style definitions, and the plugin will insert the apposite units. Defaults to `px` for sizes, `ms` for durations, and `%` for transform origins, and these can be customized easily (see Usage Example).
 
+Make sure you read [how to use
+plugins](https://github.com/cssinjs/jss/blob/master/docs/setup.md#setup-with-plugins)
+in general.
+
 [Demo](http://cssinjs.github.io/examples/index.html#plugin-jss-default-unit) -
 [JSS](https://github.com/cssinjs/jss)
 
