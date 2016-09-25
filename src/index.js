@@ -14,6 +14,13 @@ function iterate(prop, value, options) {
   let convertedValue = value
   switch (value.constructor) {
     case Object:
+      // If property is not a 'nesting' rule - compose parent value with children property names.
+      if (prop.indexOf('&')) {
+        for (const innerProp in value) {
+          value[innerProp] = iterate(`${prop}-${innerProp}`, value[innerProp], options)
+        }
+        break
+      }
       for (const innerProp in value) {
         value[innerProp] = iterate(innerProp, value[innerProp], options)
       }

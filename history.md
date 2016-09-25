@@ -1,6 +1,7 @@
 ## 4.0.1 / 2016-09-25
 
 - migrate to mocha tests
+- integration with jss-nested, jss-expand
 
 ## 4.0.1 / 2016-09-09
 

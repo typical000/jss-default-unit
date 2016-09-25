@@ -1,5 +1,7 @@
 import expect from 'expect.js'
 import defaultUnit from './index'
+import nested from 'jss-nested'
+import expand from 'jss-expand'
 import {create} from 'jss'
 
 describe('jss-default-unit', () => {
@@ -247,6 +249,128 @@ describe('jss-default-unit', () => {
       expect(sheet.toString()).to.be(
         'a {\n' +
         '  padding: 10px;\n' +
+        '}'
+      )
+    })
+  })
+
+  describe('add default units in combination with nested plugin', () => {
+    let sheet
+
+    beforeEach(() => {
+      const localJss = create().use(defaultUnit(), nested())
+      sheet = localJss.createStyleSheet({
+        a: {
+          '&::before': {
+            top: 10
+          }
+        }
+      }, {named: false})
+    })
+
+    it('should add rules', () => {
+      expect(sheet.getRule('a')).to.not.be(undefined)
+      expect(sheet.getRule('a::before')).to.not.be(undefined)
+    })
+
+    it('should generate correct CSS', () => {
+      expect(sheet.toString()).to.be(
+        'a::before {\n' +
+        '  top: 10px;\n' +
+        '}'
+      )
+    })
+  })
+
+  describe('add default units in combination with nested plugin (arrays)', () => {
+    let sheet
+
+    beforeEach(() => {
+      const localJss = create().use(defaultUnit({'padding-top': 'rem'}), nested())
+      sheet = localJss.createStyleSheet({
+        a: {
+          '& b': {
+            padding: [[10, 20]]
+          }
+        }
+      }, {named: false})
+    })
+
+    it('should add rules', () => {
+      expect(sheet.getRule('a')).to.not.be(undefined)
+      expect(sheet.getRule('a b')).to.not.be(undefined)
+    })
+
+    it('should generate correct CSS', () => {
+      expect(sheet.toString()).to.be(
+        'a b {\n' +
+        '  padding: 10px 20px;\n' +
+        '}'
+      )
+    })
+  })
+
+  describe('add default units in combination with expand plugin', () => {
+    let sheet
+
+    beforeEach(() => {
+      const localJss = create().use(defaultUnit({'padding-top': 'rem'}), expand())
+      sheet = localJss.createStyleSheet({
+        a: {
+          padding: {
+            top: 5,
+            left: 0,
+            right: 10,
+            bottom: 15
+          }
+        }
+      }, {named: false})
+    })
+
+    it('should add rule', () => {
+      expect(sheet.getRule('a')).to.not.be(undefined)
+    })
+
+    it('should generate correct CSS', () => {
+      expect(sheet.toString()).to.be(
+        'a {\n' +
+        '  padding: 5rem 10px 15px 0;\n' +
+        '}'
+      )
+    })
+  })
+
+  describe('add default units with jss-nested and jss-expand together', () => {
+    let sheet
+
+    beforeEach(() => {
+      const localJss = create().use(defaultUnit(), nested(), expand())
+      sheet = localJss.createStyleSheet({
+        a: {
+          '& b': {
+            transition: [{
+              timingFunction: 'linear',
+              delay: 100,
+              property: 'opacity',
+              duration: 200
+            }, {
+              timingFunction: 'linear',
+              property: 'transform',
+              duration: 300
+            }]
+          }
+        }
+      }, {named: false})
+    })
+
+    it('should add rule', () => {
+      expect(sheet.getRule('a b')).to.not.be(undefined)
+    })
+
+    it('should generate correct CSS', () => {
+      expect(sheet.toString()).to.be(
+        'a b {\n' +
+        '  transition: opacity 200ms linear 100ms, transform 300ms linear;\n' +
         '}'
       )
     })
