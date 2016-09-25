@@ -1,3 +1,7 @@
+## 4.0.1 / 2016-09-25
+
+- migrate to mocha tests
+
 ## 4.0.1 / 2016-09-09
 
 - ignore falsy values #307

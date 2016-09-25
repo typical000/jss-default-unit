@@ -1,0 +1,254 @@
+import expect from 'expect.js'
+import defaultUnit from './index'
+import {create} from 'jss'
+
+describe('jss-default-unit', () => {
+  let jss
+
+  beforeEach(() => {
+    jss = create().use(defaultUnit({'min-width': 'pc'}))
+  })
+
+  describe('unitless values', () => {
+    let sheet
+
+    beforeEach(() => {
+      sheet = jss.createStyleSheet({
+        a: {
+          zoom: 1
+        }
+      }, {named: false})
+    })
+
+    it('should add rule', () => {
+      expect(sheet.getRule('a')).to.not.be(undefined)
+    })
+
+    it('should generate correct CSS', () => {
+      expect(sheet.toString()).to.be(
+        'a {\n' +
+        '  zoom: 1;\n' +
+        '}'
+      )
+    })
+  })
+
+  describe('values with px units', () => {
+    let sheet
+
+    beforeEach(() => {
+      sheet = jss.createStyleSheet({
+        a: {
+          width: 10
+        }
+      }, {named: false})
+    })
+
+    it('should add rule', () => {
+      expect(sheet.getRule('a')).to.not.be(undefined)
+    })
+
+    it('should generate correct CSS', () => {
+      expect(sheet.toString()).to.be(
+        'a {\n' +
+        '  width: 10px;\n' +
+        '}'
+      )
+    })
+  })
+
+  describe('values with ms units', () => {
+    let sheet
+
+    beforeEach(() => {
+      sheet = jss.createStyleSheet({
+        a: {
+          'animation-duration': 200
+        }
+      }, {named: false})
+    })
+
+    it('should add rule', () => {
+      expect(sheet.getRule('a')).to.not.be(undefined)
+    })
+
+    it('should generate correct CSS', () => {
+      expect(sheet.toString()).to.be(
+        'a {\n' +
+        '  animation-duration: 200ms;\n' +
+        '}'
+      )
+    })
+  })
+
+  describe('values with % units', () => {
+    let sheet
+
+    beforeEach(() => {
+      sheet = jss.createStyleSheet({
+        a: {
+          'transform-origin-x': 50
+        }
+      }, {named: false})
+    })
+
+    it('should add rule', () => {
+      expect(sheet.getRule('a')).to.not.be(undefined)
+    })
+
+    it('should generate correct CSS', () => {
+      expect(sheet.toString()).to.be(
+        'a {\n' +
+        '  transform-origin-x: 50%;\n' +
+        '}'
+      )
+    })
+  })
+
+  describe('leave non-regular rules unchanged', () => {
+    let sheet
+
+    beforeEach(() => {
+      sheet = jss.createStyleSheet({
+        '@font-face': {
+          'font-family': 'MyHelvetica',
+          src: 'local("Helvetica")'
+        },
+        '@media print': {
+          button: {
+            'border-left': 1,
+            border: 3
+          }
+        },
+        '@keyframes id': {
+          from: {top: 0},
+          '30%': {top: 30},
+          '60%, 70%': {top: 80}
+        }
+      }, {named: false})
+    })
+
+    it('should generate correct CSS', () => {
+      expect(sheet.toString()).to.be(
+        '@font-face {\n' +
+        '  font-family: MyHelvetica;\n' +
+        '  src: local("Helvetica");\n' +
+        '}\n' +
+        '@media print {\n' +
+        '  button {\n' +
+        '    border-left: 1px;\n' +
+        '    border: 3px;\n' +
+        '  }\n' +
+        '}\n' +
+        '@keyframes id {\n' +
+        '  from {\n' +
+        '    top: 0;\n' +
+        '  }\n' +
+        '  30% {\n' +
+        '    top: 30px;\n' +
+        '  }\n' +
+        '  60%, 70% {\n' +
+        '    top: 80px;\n' +
+        '  }\n' +
+        '}'
+      )
+    })
+  })
+
+  describe('comma-separated values', () => {
+    let sheet
+
+    beforeEach(() => {
+      sheet = jss.createStyleSheet({
+        a: {
+          'background-size': [10, 15]
+        }
+      }, {named: false})
+    })
+
+    it('should add rule', () => {
+      expect(sheet.getRule('a')).to.not.be(undefined)
+    })
+
+    it('should generate correct CSS', () => {
+      expect(sheet.toString()).to.be(
+        'a {\n' +
+        '  background-size: 10px, 15px;\n' +
+        '}'
+      )
+    })
+  })
+
+  describe('comma-separated values', () => {
+    let sheet
+
+    beforeEach(() => {
+      sheet = jss.createStyleSheet({
+        a: {
+          'background-size': [[10, 5]]
+        }
+      }, {named: false})
+    })
+
+    it('should add rule', () => {
+      expect(sheet.getRule('a')).to.not.be(undefined)
+    })
+
+    it('should generate correct CSS', () => {
+      expect(sheet.toString()).to.be(
+        'a {\n' +
+        '  background-size: 10px 5px;\n' +
+        '}'
+      )
+    })
+  })
+
+  describe('customized units via options object', () => {
+    let sheet
+
+    beforeEach(() => {
+      sheet = jss.createStyleSheet({
+        a: {
+          'min-width': 20
+        }
+      }, {named: false})
+    })
+
+    it('should add rule', () => {
+      expect(sheet.getRule('a')).to.not.be(undefined)
+    })
+
+    it('should generate correct CSS', () => {
+      expect(sheet.toString()).to.be(
+        'a {\n' +
+        '  min-width: 20pc;\n' +
+        '}'
+      )
+    })
+  })
+
+  describe('ignore falsy values', () => {
+    let sheet
+
+    beforeEach(() => {
+      sheet = jss.createStyleSheet({
+        a: {
+          padding: 10,
+          margin: null
+        }
+      }, {named: false})
+    })
+
+    it('should add rule', () => {
+      expect(sheet.getRule('a')).to.not.be(undefined)
+    })
+
+    it('should generate correct CSS', () => {
+      expect(sheet.toString()).to.be(
+        'a {\n' +
+        '  padding: 10px;\n' +
+        '}'
+      )
+    })
+  })
+})
