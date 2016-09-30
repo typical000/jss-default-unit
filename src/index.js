@@ -14,6 +14,12 @@ function iterate(prop, value, options) {
   let convertedValue = value
   switch (value.constructor) {
     case Object:
+      if (prop === 'fallbacks') {
+        for (const innerProp in value) {
+          value[innerProp] = iterate(innerProp, value[innerProp], options)
+        }
+        break
+      }
       for (const innerProp in value) {
         value[innerProp] = iterate(`${prop}-${innerProp}`, value[innerProp], options)
       }

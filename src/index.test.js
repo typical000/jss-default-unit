@@ -253,6 +253,48 @@ describe('jss-default-unit', () => {
     })
   })
 
+  describe('add default units to fallbacks', () => {
+    let sheet
+
+    beforeEach(() => {
+      const localJss = create().use(defaultUnit(), expand())
+      sheet = localJss.createStyleSheet({
+        a: {
+          padding: 0,
+          fallbacks: {
+            padding: 5
+          }
+        },
+        b: {
+          padding: 0,
+          fallbacks: [
+            {padding: 5},
+            {padding: 10}
+          ]
+        }
+      }, {named: false})
+    })
+
+    it('should add rule', () => {
+      expect(sheet.getRule('a')).to.not.be(undefined)
+      expect(sheet.getRule('b')).to.not.be(undefined)
+    })
+
+    it('should generate correct CSS', () => {
+      expect(sheet.toString()).to.be(
+        'a {\n' +
+        '  padding: 5px;\n' +
+        '  padding: 0;\n' +
+        '}\n' +
+        'b {\n' +
+        '  padding: 5px;\n' +
+        '  padding: 10px;\n' +
+        '  padding: 0;\n' +
+        '}'
+      )
+    })
+  })
+
   describe('add default units in combination with expand plugin', () => {
     let sheet
 
