@@ -2,6 +2,7 @@
 
 - migrate to mocha tests
 - integration with jss-nested, jss-expand
+- update deps
 
 ## 4.0.1 / 2016-09-09
 

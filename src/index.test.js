@@ -1,7 +1,8 @@
 import expect from 'expect.js'
-import defaultUnit from './index'
 import expand from 'jss-expand'
 import {create} from 'jss'
+
+import defaultUnit from './index'
 
 describe('jss-default-unit', () => {
   let jss

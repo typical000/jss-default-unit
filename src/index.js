@@ -61,7 +61,7 @@ function addUnit(prop, value, options) {
  * @api public
  */
 export default function defaultUnit(options = {}) {
-  return rule => {
+  return (rule) => {
     const {style, type} = rule
     if (!style || type !== 'regular') return
     for (const prop in style) {
