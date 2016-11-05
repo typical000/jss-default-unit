@@ -1,7 +1,7 @@
 {
   "name": "jss-default-unit",
   "description": "JSS plugin that adds default custom unit to numeric values where needed",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "author": {
     "name": "Oleg Slobodskoi",
     "email": "oleg008@gmail.com"
@@ -29,8 +29,8 @@
     "build:tests:lib": "cross-env NODE_ENV=test babel src --out-dir tests",
     "build:tests:local": "cross-env NODE_ENV=test webpack src/index.test.js tmp/tests.js",
     "build:dist": "npm run build:dist:max && npm run build:dist:min",
-    "build:dist:max": "cross-env NODE_ENV=development webpack src/index.js dist/react-jss.js",
-    "build:dist:min": "cross-env NODE_ENV=production webpack src/index.js dist/react-jss.min.js",
+    "build:dist:max": "cross-env NODE_ENV=development webpack src/index.js dist/jss-default-unit.js",
+    "build:dist:min": "cross-env NODE_ENV=production webpack src/index.js dist/jss-default-unit.min.js",
     "clean": "rimraf {lib,dist,tests,tmp}/*",
     "lint": "eslint ./src",
     "lint:staged": "lint-staged",

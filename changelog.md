@@ -1,4 +1,8 @@
-## 4.1.0 / 2016-09-25
+## 4.1.1 / 2016-11-05
+
+- fix dist file name
+
+## 4.1.0 / 2016-11-05
 
 - migrate to mocha tests
 - integration with jss-nested, jss-expand
