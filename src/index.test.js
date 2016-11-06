@@ -4,11 +4,15 @@ import {create} from 'jss'
 
 import defaultUnit from './index'
 
+const settings = {
+  generateClassName: (str, rule) => `${rule.name}-id`
+}
+
 describe('jss-default-unit', () => {
   let jss
 
   beforeEach(() => {
-    jss = create().use(defaultUnit({'min-width': 'pc'}))
+    jss = create(settings).use(defaultUnit({'min-width': 'pc'}))
   })
 
   describe('unitless values', () => {
@@ -19,7 +23,7 @@ describe('jss-default-unit', () => {
         a: {
           zoom: 1
         }
-      }, {named: false})
+      })
     })
 
     it('should add rule', () => {
@@ -28,7 +32,7 @@ describe('jss-default-unit', () => {
 
     it('should generate correct CSS', () => {
       expect(sheet.toString()).to.be(
-        'a {\n' +
+        '.a-id {\n' +
         '  zoom: 1;\n' +
         '}'
       )
@@ -43,7 +47,7 @@ describe('jss-default-unit', () => {
         a: {
           width: 10
         }
-      }, {named: false})
+      })
     })
 
     it('should add rule', () => {
@@ -52,7 +56,7 @@ describe('jss-default-unit', () => {
 
     it('should generate correct CSS', () => {
       expect(sheet.toString()).to.be(
-        'a {\n' +
+        '.a-id {\n' +
         '  width: 10px;\n' +
         '}'
       )
@@ -67,7 +71,7 @@ describe('jss-default-unit', () => {
         a: {
           'animation-duration': 200
         }
-      }, {named: false})
+      })
     })
 
     it('should add rule', () => {
@@ -76,7 +80,7 @@ describe('jss-default-unit', () => {
 
     it('should generate correct CSS', () => {
       expect(sheet.toString()).to.be(
-        'a {\n' +
+        '.a-id {\n' +
         '  animation-duration: 200ms;\n' +
         '}'
       )
@@ -91,7 +95,7 @@ describe('jss-default-unit', () => {
         a: {
           'transform-origin-x': 50
         }
-      }, {named: false})
+      })
     })
 
     it('should add rule', () => {
@@ -100,7 +104,7 @@ describe('jss-default-unit', () => {
 
     it('should generate correct CSS', () => {
       expect(sheet.toString()).to.be(
-        'a {\n' +
+        '.a-id {\n' +
         '  transform-origin-x: 50%;\n' +
         '}'
       )
@@ -117,7 +121,7 @@ describe('jss-default-unit', () => {
           src: 'local("Helvetica")'
         },
         '@media print': {
-          button: {
+          a: {
             'border-left': 1,
             border: 3
           }
@@ -127,7 +131,7 @@ describe('jss-default-unit', () => {
           '30%': {top: 30},
           '60%, 70%': {top: 80}
         }
-      }, {named: false})
+      })
     })
 
     it('should generate correct CSS', () => {
@@ -137,7 +141,7 @@ describe('jss-default-unit', () => {
         '  src: local("Helvetica");\n' +
         '}\n' +
         '@media print {\n' +
-        '  button {\n' +
+        '  .a-id {\n' +
         '    border-left: 1px;\n' +
         '    border: 3px;\n' +
         '  }\n' +
@@ -165,7 +169,7 @@ describe('jss-default-unit', () => {
         a: {
           'background-size': [10, 15]
         }
-      }, {named: false})
+      })
     })
 
     it('should add rule', () => {
@@ -174,7 +178,7 @@ describe('jss-default-unit', () => {
 
     it('should generate correct CSS', () => {
       expect(sheet.toString()).to.be(
-        'a {\n' +
+        '.a-id {\n' +
         '  background-size: 10px, 15px;\n' +
         '}'
       )
@@ -189,7 +193,7 @@ describe('jss-default-unit', () => {
         a: {
           'background-size': [[10, 5]]
         }
-      }, {named: false})
+      })
     })
 
     it('should add rule', () => {
@@ -198,7 +202,7 @@ describe('jss-default-unit', () => {
 
     it('should generate correct CSS', () => {
       expect(sheet.toString()).to.be(
-        'a {\n' +
+        '.a-id {\n' +
         '  background-size: 10px 5px;\n' +
         '}'
       )
@@ -213,7 +217,7 @@ describe('jss-default-unit', () => {
         a: {
           'min-width': 20
         }
-      }, {named: false})
+      })
     })
 
     it('should add rule', () => {
@@ -222,7 +226,7 @@ describe('jss-default-unit', () => {
 
     it('should generate correct CSS', () => {
       expect(sheet.toString()).to.be(
-        'a {\n' +
+        '.a-id {\n' +
         '  min-width: 20pc;\n' +
         '}'
       )
@@ -238,7 +242,7 @@ describe('jss-default-unit', () => {
           padding: 10,
           margin: null
         }
-      }, {named: false})
+      })
     })
 
     it('should add rule', () => {
@@ -247,7 +251,7 @@ describe('jss-default-unit', () => {
 
     it('should generate correct CSS', () => {
       expect(sheet.toString()).to.be(
-        'a {\n' +
+        '.a-id {\n' +
         '  padding: 10px;\n' +
         '}'
       )
@@ -258,7 +262,7 @@ describe('jss-default-unit', () => {
     let sheet
 
     beforeEach(() => {
-      const localJss = create().use(defaultUnit(), expand())
+      const localJss = create(settings).use(defaultUnit(), expand())
       sheet = localJss.createStyleSheet({
         a: {
           padding: 0,
@@ -273,7 +277,7 @@ describe('jss-default-unit', () => {
             {padding: 10}
           ]
         }
-      }, {named: false})
+      })
     })
 
     it('should add rule', () => {
@@ -283,11 +287,11 @@ describe('jss-default-unit', () => {
 
     it('should generate correct CSS', () => {
       expect(sheet.toString()).to.be(
-        'a {\n' +
+        '.a-id {\n' +
         '  padding: 5px;\n' +
         '  padding: 0;\n' +
         '}\n' +
-        'b {\n' +
+        '.b-id {\n' +
         '  padding: 5px;\n' +
         '  padding: 10px;\n' +
         '  padding: 0;\n' +
@@ -300,7 +304,7 @@ describe('jss-default-unit', () => {
     let sheet
 
     beforeEach(() => {
-      const localJss = create().use(defaultUnit({'padding-top': 'rem'}), expand())
+      const localJss = create(settings).use(defaultUnit({'padding-top': 'rem'}), expand())
       sheet = localJss.createStyleSheet({
         a: {
           padding: {
@@ -310,7 +314,7 @@ describe('jss-default-unit', () => {
             bottom: 15
           }
         }
-      }, {named: false})
+      })
     })
 
     it('should add rule', () => {
@@ -319,7 +323,7 @@ describe('jss-default-unit', () => {
 
     it('should generate correct CSS', () => {
       expect(sheet.toString()).to.be(
-        'a {\n' +
+        '.a-id {\n' +
         '  padding: 5rem 10px 15px 0;\n' +
         '}'
       )
@@ -330,7 +334,7 @@ describe('jss-default-unit', () => {
     let sheet
 
     beforeEach(() => {
-      const localJss = create().use(defaultUnit(), expand())
+      const localJss = create(settings).use(defaultUnit(), expand())
       sheet = localJss.createStyleSheet({
         a: {
           transition: [{
@@ -344,7 +348,7 @@ describe('jss-default-unit', () => {
             duration: 300
           }]
         }
-      }, {named: false})
+      })
     })
 
     it('should add rule', () => {
@@ -353,7 +357,7 @@ describe('jss-default-unit', () => {
 
     it('should generate correct CSS', () => {
       expect(sheet.toString()).to.be(
-        'a {\n' +
+        '.a-id {\n' +
         '  transition: opacity 200ms linear 100ms, transform 300ms linear;\n' +
         '}'
       )
