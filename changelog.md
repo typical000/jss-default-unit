@@ -1,3 +1,7 @@
+## 4.1.2 / 2016-11-12
+
+- support spread, x, y, blur for box-shadow and text-shadow
+
 ## 4.1.1 / 2016-11-05
 
 - fix dist file name
