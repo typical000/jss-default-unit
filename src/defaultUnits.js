@@ -31,6 +31,10 @@ export default {
   'border-start-width': 'px',
   'border-vertical-spacing': 'px',
   bottom: 'px',
+  'box-shadow-x': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
+  'box-shadow-y': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
+  'box-shadow-blur': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
+  'box-shadow-spread': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
   'column-gap': 'px',
   'column-rule': 'px',
   'column-rule-width': 'px',
@@ -84,6 +88,9 @@ export default {
   'shape-margin': 'px',
   size: 'px',
   'text-indent': 'px',
+  'text-shadow-x': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
+  'text-shadow-y': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
+  'text-shadow-blur': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
   'text-stroke': 'px',
   'text-stroke-width': 'px',
   top: 'px',
