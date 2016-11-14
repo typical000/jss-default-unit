@@ -40,6 +40,7 @@ export default {
   'column-rule-width': 'px',
   'column-width': 'px',
   'flex-basis': 'px',
+  'font-line-height': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
   'font-size': 'px',
   'font-size-delta': 'px',
   height: 'px',
