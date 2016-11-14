@@ -1,3 +1,7 @@
+## 4.1.3 / 2016-11-14
+
+- support expanded line height from font
+
 ## 4.1.2 / 2016-11-12
 
 - support spread, x, y, blur for box-shadow and text-shadow
