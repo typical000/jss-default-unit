@@ -1,6 +1,22 @@
 import defaultUnits from './defaultUnits'
 
 /**
+ * Clones the object and adds a camel cased property version.
+ */
+function addCamelCasedVersion(obj) {
+  const regExp = /(-[a-z])/g
+  const replace = str => str[1].toUpperCase()
+  const newObj = {}
+  for (const key in obj) {
+    newObj[key] = obj[key]
+    newObj[key.replace(regExp, replace)] = obj[key]
+  }
+  return newObj
+}
+
+const units = addCamelCasedVersion(defaultUnits)
+
+/**
  * Recursive deep style passing function
  *
  * @param {String} current property
@@ -48,8 +64,8 @@ function iterate(prop, value, options) {
  * @return {String} string with units
  */
 function addUnit(prop, value, options) {
-  if (typeof value == 'number' && value !== 0) {
-    value += options[prop] || defaultUnits[prop] || ''
+  if (typeof value === 'number' && value !== 0) {
+    value += options[prop] || units[prop] || ''
   }
   return value
 }
@@ -65,7 +81,7 @@ export default function defaultUnit(options = {}) {
     const {style, type} = rule
     if (!style || type !== 'regular') return
     for (const prop in style) {
-      style[prop] = iterate(prop, style[prop], options)
+      style[prop] = iterate(prop, style[prop], addCamelCasedVersion(options))
     }
   }
 }

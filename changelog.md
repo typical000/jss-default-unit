@@ -1,3 +1,7 @@
+## 4.1.4 / 2016-11-24
+
+- support camel cased default units for the case user doesn't uses jss-camel-case plugin because user renders inline
+
 ## 4.1.3 / 2016-11-14
 
 - support expanded line height from font
