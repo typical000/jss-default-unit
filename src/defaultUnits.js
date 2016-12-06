@@ -31,6 +31,7 @@ export default {
   'border-start-width': 'px',
   'border-vertical-spacing': 'px',
   bottom: 'px',
+  'box-shadow': 'px',
   'box-shadow-x': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
   'box-shadow-y': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
   'box-shadow-blur': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
