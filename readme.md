@@ -1,6 +1,4 @@
-![JSS logo](https://avatars1.githubusercontent.com/u/9503099?v=3&s=60)
-
-## JSS plugin that adds units to numeric values
+# JSS plugin that adds units to numeric values
 
 Provide plain numeric values in your JSS style definitions, and the plugin will insert the apposite units. Defaults to `px` for sizes, `ms` for durations, and `%` for transform origins, and these can be customized easily (see Usage Example).
 
