@@ -1,3 +1,19 @@
+## 5.0.0 / 2016-12-09
+
+- update jss to 6.0
+
+## 4.1.4 / 2016-11-24
+
+- support camel cased default units for the case user doesn't uses jss-camel-case plugin because user renders inline
+
+## 4.1.3 / 2016-11-14
+
+- support expanded line height from font
+
+## 4.1.2 / 2016-11-12
+
+- support spread, x, y, blur for box-shadow and text-shadow
+
 ## 4.1.1 / 2016-11-05
 
 - fix dist file name

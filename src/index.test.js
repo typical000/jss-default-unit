@@ -363,4 +363,35 @@ describe('jss-default-unit', () => {
       )
     })
   })
+
+  describe('support camel cased units', () => {
+    it('should work with default units', () => {
+      const sheet = jss.createStyleSheet({
+        a: {
+          borderBottom: 10
+        }
+      })
+      expect(sheet.toString()).to.be(
+        '.a-id {\n' +
+        '  borderBottom: 10px;\n' +
+        '}'
+      )
+    })
+
+    it('should work with user units', () => {
+      const localJss = create(settings).use(defaultUnit({borderBottom: 'pc'}))
+
+      const sheet = localJss.createStyleSheet({
+        a: {
+          borderBottom: 10
+        }
+      })
+
+      expect(sheet.toString()).to.be(
+        '.a-id {\n' +
+        '  borderBottom: 10pc;\n' +
+        '}'
+      )
+    })
+  })
 })
