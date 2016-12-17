@@ -5,6 +5,7 @@
 export default {
   'animation-delay': 'ms',
   'animation-duration': 'ms',
+  'background-position': 'px',
   'background-position-x': 'px',
   'background-position-y': 'px',
   'background-size': 'px',
